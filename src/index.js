@@ -3,12 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { NumericalValueProvider } from "./context/date-context";
+// Import Bootstrap JavaScript
+//import 'bootstrap';
+//import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
+  <NumericalValueProvider>
     <App />
-  </React.StrictMode>
+  </NumericalValueProvider>
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
