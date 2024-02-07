@@ -40,3 +40,24 @@ export const convertDateFormat = (inputDate) => {
 
   return outputDate;
 };
+
+//Function to find difference in dates
+export const calculateDaysDifference = (inputDate) => {
+  // Replace "/" with "-" in the input date string
+  const normalizedDate = inputDate.replace(/\//g, '-');
+
+  // Convert the normalized date string to a Date object
+  const inputDateObject = new Date(normalizedDate);
+  
+  // Get today's date
+  const today = new Date();
+
+  // Calculate the difference in milliseconds
+  const timeDifference = inputDateObject - today;
+
+  // Convert milliseconds to days
+  let daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+  daysDifference = daysDifference !== 0 ? -daysDifference : 0;
+
+  return daysDifference;
+}

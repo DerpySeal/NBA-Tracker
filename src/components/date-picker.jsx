@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { convertDateFormat } from "../misc/date-utils";
+import { convertDateFormat, calculateDaysDifference } from "../misc/date-utils";
+import { useNumericalValue } from "../context/date-context";
 
 export const DatePickerInput = (props) => {
+  const { setNumericalValue } = useNumericalValue();
   const [inputText, setInputText] = useState("");
 
   const handleButtonClick = () => {
     // Perform some action with the text (replace this with your logic)
-    console.log("You entered: " + inputText);
+    const daysDiff = calculateDaysDifference(inputText)
+    setNumericalValue(daysDiff)
     setInputText("");
   };
 
