@@ -1,9 +1,9 @@
-// DateUtils.js
+//Function to format game status time
 export const getFormattedDate = (num) => {
   const today = new Date();
   const adjustedDate = new Date(today);
 
-  //Change that -1 to change how many days to go forward / backward
+  //Num changes how many days to go backwards / forwards
   adjustedDate.setDate(today.getDate() - num);
 
   const year = adjustedDate.getFullYear();
@@ -29,3 +29,14 @@ export const convertToEST = (isoString) => {
 
   return estDate.toLocaleString('en-US', options);
 }
+
+//Function to change "YYYY-DD-MM" to "MM/DD/YYYY"
+export const convertDateFormat = (inputDate) => {
+  // Split the input string into an array of year, month, and day
+  const [year, month, day] = inputDate.split('-');
+
+  // Create the new date string in "MM/DD/YYYY" format
+  const outputDate = `${month}/${day}/${year}`;
+
+  return outputDate;
+};

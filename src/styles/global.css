@@ -83,3 +83,15 @@ html {
     border-radius: 10px;
     border: 2px solid rgb(49, 139, 191);
 }
+
+.date-container {
+    background-color: #3b3e46;
+    border-radius: 10px;
+    border: 2px solid rgb(49, 139, 191);
+    width: 86%;
+}
+
+.date-input {
+    border: 1px solid white;
+    border-radius: 5px;
+}

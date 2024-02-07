@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/global.css";
 import LOGO from "../misc/nba-logo-transparent.png";
 import { Link } from "react-router-dom";
@@ -6,6 +6,10 @@ import { useNumericalValue } from "../context/date-context";
 
 export const Home = () => {
   const { setNumericalValue } = useNumericalValue();
+
+  useEffect(() => {
+    setNumericalValue(0)
+  })
 
   const handleButtonClick = (value) => {
     // Change the numericalValue when the button is clicked

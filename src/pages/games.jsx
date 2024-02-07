@@ -3,6 +3,7 @@ import axios from "axios";
 import { Game } from "../components/game";
 import { getFormattedDate } from "../misc/date-utils";
 import { useNumericalValue } from "../context/date-context";
+import { DatePickerInput } from "../components/date-picker";
 
 export const GamesPage = () => {
   const { numericalValue } = useNumericalValue();
@@ -24,18 +25,25 @@ export const GamesPage = () => {
   }, [numericalValue]);
 
   return (
-    <div className="container">
-      <div className="row">
-        {gamesReal.data && Array.isArray(gamesReal.data) ? (
-          gamesReal.data.map((game, index) => (
-            <div key={index} className='col-sm-6 my-4'>
-              {console.log(game)}
-              <Game gameData={game}/>
-            </div>
-          ))
-        ) : (
-          <p>No games data available</p>
+    <div>
+      <div>
+        {gamesReal.data && gamesReal.data[0] && gamesReal.data[0].date && (
+          <DatePickerInput day={gamesReal.data[0].date} />
         )}
+      </div>
+      <div className="container">
+        <div className="row">
+          {gamesReal.data && Array.isArray(gamesReal.data) ? (
+            gamesReal.data.map((game, index) => (
+              <div key={index} className="col-sm-6 my-4">
+                {console.log(gamesReal.data)}
+                <Game gameData={game} />
+              </div>
+            ))
+          ) : (
+            <p>No games data available</p>
+          )}
+        </div>
       </div>
     </div>
   );
