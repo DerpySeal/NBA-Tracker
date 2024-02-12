@@ -266,8 +266,8 @@ export const Game = (props) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {homeStats &&
-                    homeStats.map((player, index) => (
+                  {awayStats &&
+                    awayStats.map((player, index) => (
                       <tr key={index}>
                         {console.log(player)}
                         <th scope="row" className="text-start ps-5">{player.name}</th>
