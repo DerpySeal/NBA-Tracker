@@ -36,7 +36,6 @@ export const GamesPage = () => {
           {gamesReal.data && Array.isArray(gamesReal.data) ? (
             gamesReal.data.map((game, index) => (
               <div key={index} className="col-sm-6 my-4">
-                {console.log(gamesReal.data)}
                 <Game gameData={game} />
               </div>
             ))

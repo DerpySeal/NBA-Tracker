@@ -63,3 +63,22 @@ export const pickPlayer = async (gameID, hoa) => {
 
   return topPlayerObj;
 };
+
+export const expandStats = async (gameID, hoa) => {
+  const data = await getGame(gameID);
+  let teamArr = [];
+  const teamID = hoaID(data, hoa);
+
+
+  for(var i = 0; i < data.length; i++){
+    if(data[i].player.team_id == teamID) {
+      if(data[i].min > 0){
+        teamArr.push({name: `${data[i].player.first_name} ${data[i].player.last_name}`, pts: data[i].pts, fg: `${data[i].fgm}/${data[i].fga}`, threept: `${data[i].fg3m}/${data[i].fg3a}`, ft: `${data[i].ftm}/${data[i].fta}`, reb: data[i].reb, ast: data[i].ast, stl: data[i].stl, blk: data[i].blk, min: data[i].min})
+      }
+    }
+  }
+
+  teamArr.sort((a, b) => b.pts - a.pts);
+
+  return teamArr;
+}

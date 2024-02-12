@@ -9,6 +9,7 @@ export const Navbar = () => {
         <Link to='/' className='poppins-semibold'>Tracker.io</Link>
         <Link to='/' className='montserrat'>Home</Link>
         <Link to='/games' className='montserrat'>Games</Link>
+        <Link to='/standings' className='montserrat'>Standings</Link>
       </div>
     </div>
   )
