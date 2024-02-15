@@ -3,15 +3,24 @@ export const getFormattedDate = (num) => {
   const today = new Date();
   const adjustedDate = new Date(today);
 
-  //Num changes how many days to go backwards / forwards
+  // Num changes how many days to go backwards / forwards
   adjustedDate.setDate(today.getDate() - num);
 
   const year = adjustedDate.getFullYear();
-  const month = String(adjustedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-  const day = String(adjustedDate.getDate()).padStart(2, '0');
+  const monthIndex = adjustedDate.getMonth();
+  const day = adjustedDate.getDate();
 
-  return `${year}-${month}-${day}`;
+  const months = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
+  ];
+
+  const monthName = months[monthIndex];
+
+  return `${monthName} ${day}, ${year}`;
 };
+
 
 export const convertToEST = (isoString) => {
   const utcDate = new Date(isoString);
@@ -31,7 +40,7 @@ export const convertToEST = (isoString) => {
 }
 
 //Function to change "YYYY-DD-MM" to "MM/DD/YYYY"
-export const convertDateFormat = (inputDate) => {
+export const convertDateFormatSlash = (inputDate) => {
   // Split the input string into an array of year, month, and day
   const [year, month, day] = inputDate.split('-');
 
@@ -40,6 +49,30 @@ export const convertDateFormat = (inputDate) => {
 
   return outputDate;
 };
+
+export const convertDateFormat = (inputDate) => {
+  // Split the input string into an array of year, month, and day
+  const [year, month, day] = inputDate.split('-');
+
+  // Create a Date object to get the month name
+  const dateObject = new Date(inputDate);
+  const monthIndex = dateObject.getMonth();
+  const dayOfMonth = dateObject.getDate() + 1;
+
+  const months = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
+  ];
+
+  const monthName = months[monthIndex];
+
+  // Create the new date string in "Month DD, YYYY" format
+  const outputDate = `${monthName} ${dayOfMonth}, ${year}`;
+
+  return outputDate;
+};
+
 
 //Function to find difference in dates
 export const calculateDaysDifference = (inputDate) => {
@@ -56,7 +89,7 @@ export const calculateDaysDifference = (inputDate) => {
   const timeDifference = inputDateObject - today;
 
   // Convert milliseconds to days
-  let daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+  let daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 2;
   daysDifference = daysDifference !== 0 ? -daysDifference : 0;
 
   return daysDifference;

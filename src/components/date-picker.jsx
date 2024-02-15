@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { convertDateFormat, calculateDaysDifference } from "../misc/date-utils";
 import { useNumericalValue } from "../context/date-context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 
 export const DatePickerInput = (props) => {
   const { setNumericalValue } = useNumericalValue();
@@ -8,20 +10,30 @@ export const DatePickerInput = (props) => {
 
   const handleButtonClick = () => {
     // Perform some action with the text (replace this with your logic)
-    const daysDiff = calculateDaysDifference(inputText)
-    setNumericalValue(daysDiff)
+    const daysDiff = calculateDaysDifference(inputText);
+    console.log(inputText)
+    setNumericalValue(daysDiff + 1);
     setInputText("");
   };
 
   return (
     <div className="container date-container py-4 my-3">
-      <h1>{`Viewing Games For ${convertDateFormat(props.day)}`}</h1>
+      <h1>{`${convertDateFormat(props.day)}`}</h1>
       <div className="row justify-content-center align-items-center">
         <div className="col-auto">
           <div className="input-group date-input" data-bs-theme="dark">
-            <span class="input-group-text" id="basic-addon1">
-              Select Date
-            </span>
+            <button
+              class="btn btn-lg"
+              type="button"
+              id="button-addon1"
+              onClick={() => {
+                console.log("clicked");
+              }}
+              //data-bs-toggle="modal"
+              //data-bs-target="#exampleModal"
+            >
+              <FontAwesomeIcon icon={faCalendar} />
+            </button>
             <input
               type="text"
               class="form-control"
@@ -40,6 +52,44 @@ export const DatePickerInput = (props) => {
           >
             Change Date
           </button>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+        data-bs-theme="dark"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Modal title
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

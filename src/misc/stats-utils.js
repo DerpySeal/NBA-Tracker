@@ -32,10 +32,10 @@ export const pickPlayer = async (gameID, hoa) => {
   const data = await getGame(gameID);
 
   if (data.length < 1) {
-    topPlayerObj.name = '-';
-    topPlayerObj.pts = '-';
-    topPlayerObj.ast = '-';
-    topPlayerObj.reb = '-';
+    topPlayerObj.name = "-";
+    topPlayerObj.pts = "-";
+    topPlayerObj.ast = "-";
+    topPlayerObj.reb = "-";
   } else {
     const teamID = hoaID(data, hoa);
     var tempScore = -1;
@@ -69,11 +69,21 @@ export const expandStats = async (gameID, hoa) => {
   let teamArr = [];
   const teamID = hoaID(data, hoa);
 
-
-  for(var i = 0; i < data.length; i++){
-    if(data[i].player.team_id == teamID) {
-      if(data[i].min > 0){
-        teamArr.push({name: `${data[i].player.first_name} ${data[i].player.last_name}`, pts: data[i].pts, fg: `${data[i].fgm}/${data[i].fga}`, threept: `${data[i].fg3m}/${data[i].fg3a}`, ft: `${data[i].ftm}/${data[i].fta}`, reb: data[i].reb, ast: data[i].ast, stl: data[i].stl, blk: data[i].blk, min: data[i].min})
+  for (var i = 0; i < data.length; i++) {
+    if (data[i].player.team_id == teamID) {
+      if (data[i].min > 0) {
+        teamArr.push({
+          name: `${data[i].player.first_name} ${data[i].player.last_name}`,
+          pts: data[i].pts,
+          fg: `${data[i].fgm}/${data[i].fga}`,
+          threept: `${data[i].fg3m}/${data[i].fg3a}`,
+          ft: `${data[i].ftm}/${data[i].fta}`,
+          reb: data[i].reb,
+          ast: data[i].ast,
+          stl: data[i].stl,
+          blk: data[i].blk,
+          min: data[i].min,
+        });
       }
     }
   }
@@ -81,4 +91,57 @@ export const expandStats = async (gameID, hoa) => {
   teamArr.sort((a, b) => b.pts - a.pts);
 
   return teamArr;
+};
+
+//Retrive player id based on name
+export const getPlayerId = async (name) => {
+  try {
+    const response = await axios.get(
+      `https://www.balldontlie.io/api/v1/players?search=${name}`
+    );
+    if (response.data.data[0].id) {
+      return response.data.data[0].id;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching game stats:", error);
+    throw error; // Propagate the error to the calling component
+  }
+};
+
+export const getPlayerInfo = async (name) => {
+  try {
+    const response = await axios.get(
+      `https://www.balldontlie.io/api/v1/players?search=${name}`
+    );
+    //console.log(response.data.data);
+    if (response.data.data[0]) {
+      return response.data.data[0];
+    } else {
+      console.log('null from getPlayerInfo')
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching game stats:", error);
+    throw error; // Propagate the error to the calling component
+  }
 }
+
+//Retrive player season averages
+export const getPlayerAvg = async (name) => {
+  const playerId = await getPlayerId(name);
+  if (playerId > 0) {
+    try {
+      const response = await axios.get(
+        `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerId}`
+      );
+      return response.data.data[0];
+    } catch (error) {
+      console.error("Error fetching game stats:", error);
+      throw error; // Propagate the error to the calling component
+    }
+  } else {
+    console.log("Player ID not found");
+  }
+};

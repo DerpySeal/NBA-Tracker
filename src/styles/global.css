@@ -117,3 +117,47 @@ html {
 .name-col {
     width: 35%
 }
+
+.player-search {
+  border-radius: 50px;
+  width: 50%;
+  height: 60px;
+  background-color: #87898e;
+  color: white;
+  font-size: 30px;
+  letter-spacing: 1px;
+  flex: 1;
+  border: 3px solid rgb(49, 139, 191);
+}
+
+input::placeholder {
+  color: white;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 26.5%; /* Adjust the positioning as needed */
+  color: rgb(255, 255, 255); /* Adjust the color as needed */
+}
+
+.search-container {
+  position: relative;
+}
+
+.player-name {
+  font-size: 100px;
+}
+
+.player-card-h3 {
+  width: fit-content;
+  display: inline;
+}
+
+.player-card-btn {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  margin: 0%;
+}
