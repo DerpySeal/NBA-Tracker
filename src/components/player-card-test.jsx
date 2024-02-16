@@ -35,13 +35,13 @@ export const PlayerCard = (props) => {
   return (
     <div>
       {props.playerData && props.playerInfo ? (
-        <div className="container player-card background-tint">
+        <div className="container player-card">
           <div className="row">
-          <div
-              className="col-sm-4 background-logo"
+            <div
+              className="col-sm-4 pt-3 background-logo"
               style={{ backgroundImage: `url(${teamLogo})` }}
             ></div>
-            <div className="col-sm-4 pt-3">
+            <div className="col-sm-4 pt-3 forward test">
               <h1 className="player-name bebas-neue-regular">
                 <b>{props.playerInfo.first_name}</b>
               </h1>

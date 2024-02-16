@@ -23,7 +23,7 @@ export const Players = () => {
       } else {
         setDisplayInfo(false);
         setInputText("");
-        return false
+        return false;
       }
       const playerAvg = await getPlayerAvg(inputText);
       if (playerAvg != undefined) {
@@ -32,7 +32,7 @@ export const Players = () => {
       } else {
         setDisplayInfo(false);
         setInputText("");
-        return false
+        return false;
       }
       setInputText("");
     }
@@ -40,7 +40,8 @@ export const Players = () => {
 
   return (
     <div>
-      <div className="search-container mt-5">
+      <h1 className="my-3">Active Player Search</h1>
+      <div className="search-container mt-4">
         <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
         <input
           type="text"
