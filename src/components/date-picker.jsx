@@ -11,14 +11,19 @@ export const DatePickerInput = (props) => {
   const handleButtonClick = () => {
     // Perform some action with the text (replace this with your logic)
     const daysDiff = calculateDaysDifference(inputText);
-    console.log(inputText)
-    setNumericalValue(daysDiff + 1);
+    console.log(inputText);
+    setNumericalValue(daysDiff);
     setInputText("");
   };
 
   return (
     <div className="container date-container py-4 my-3">
-      <h1>{`${convertDateFormat(props.day)}`}</h1>
+      {props.day != "0000-00-00" ? (
+        <h1 className="mb-4">{`${convertDateFormat(props.day)}`}</h1>
+      ) : (
+        <h1 className="mb-4">No games found</h1>
+      )}
+
       <div className="row justify-content-center align-items-center">
         <div className="col-auto">
           <div className="input-group date-input" data-bs-theme="dark">

@@ -27,9 +27,9 @@ export const GamesPage = () => {
   return (
     <div>
       <div>
-        {gamesReal.data && gamesReal.data[0] && gamesReal.data[0].date && (
+        {gamesReal.data && gamesReal.data[0] && gamesReal.data[0].date ? (
           <DatePickerInput day={gamesReal.data[0].date} />
-        )}
+        ) : (<DatePickerInput day={'0000-00-00'}/>)}
       </div>
       <div className="container">
         <div className="row">

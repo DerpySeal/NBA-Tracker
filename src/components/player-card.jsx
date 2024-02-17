@@ -37,7 +37,7 @@ export const PlayerCard = (props) => {
       {props.playerData && props.playerInfo ? (
         <div className="container player-card background-tint">
           <div className="row">
-          <div
+            <div
               className="col-sm-4 background-logo"
               style={{ backgroundImage: `url(${teamLogo})` }}
             ></div>
@@ -62,18 +62,26 @@ export const PlayerCard = (props) => {
               <div className="row pb-3">
                 <div className="col">
                   <h1>Height</h1>
-                  <h2>{`${props.playerInfo.height_feet}'${props.playerInfo.height_inches}"`}</h2>
+                  {props.playerInfo.height_feet ? (
+                    <h2>{`${props.playerInfo.height_feet}'${props.playerInfo.height_inches}"`}</h2>
+                  ) : (
+                    <h2>{`N/A`}</h2>
+                  )}
                 </div>
                 <div className="col">
                   <h1>Weight</h1>
-                  <h2>{`${props.playerInfo.weight_pounds} lbs.`}</h2>
+                  {props.playerInfo.weight_pounds ? (
+                    <h2>{`${props.playerInfo.weight_pounds} lbs.`}</h2>
+                  ) : (
+                    <h2>{`N/A`}</h2>
+                  )}
                 </div>
               </div>
             </div>
             <div className="col-sm-7 ms-5">
               <div className="row justify-content-between my-4">
                 <div
-                  className="col-sm-3 p-5 stat-square"
+                  className="col-sm-3 p-5 stat-square justify-content-center"
                   style={{ background: firstColor }}
                 >
                   <h1>{props.playerData.pts}</h1>

@@ -202,7 +202,7 @@ input::placeholder {
   background-size: contain;
   background-repeat: no-repeat;
   background-blend-mode: color;
-  filter: blur(10px);
+  filter: blur(5px);
   position: absolute;
   z-index: -1;
   width: 50%;
@@ -213,4 +213,8 @@ input::placeholder {
 .background-tint {
   background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
   border-radius: 20px;
+}
+
+.disclaimer {
+  color: red;
 }

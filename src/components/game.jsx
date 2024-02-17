@@ -286,7 +286,8 @@ export const Game = (props) => {
               </table>
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-between">
+              <h6 className="ms-3 disclaimer">Due to API inconsistencies, players may be missing</h6>
               <button
                 type="button"
                 class="btn btn-primary"

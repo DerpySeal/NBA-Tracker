@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useNumericalValue } from "../context/date-context";
 
 export const Home = () => {
+  const apiKey = process.env.REACT_APP_FOOTBALL_API_KEY;
   const { setNumericalValue } = useNumericalValue();
 
   useEffect(() => {
@@ -15,6 +16,9 @@ export const Home = () => {
     // Change the numericalValue when the button is clicked
     setNumericalValue(value);
   };
+
+  console.log(apiKey)
+
   return (
     <div className="tempdiv">
       <div className="d-flex container justify-content-center home-container my-5">
