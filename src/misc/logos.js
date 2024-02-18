@@ -16,6 +16,7 @@ export const LOGOS = {
     'Cleveland Cavaliers': 'https://content.sportslogos.net/logos/6/222/full/cleveland_cavaliers_logo_alternate_2023_sportslogosnet-5447.png',
     'Los Angeles Lakers': 'https://www.freepnglogos.com/uploads/lakers-logo-png/los-angeles-png-lakers-symbol-icon-7.png',
     'LA Clippers': 'https://loodibee.com/wp-content/uploads/los-angeles-clippers-logo-symbol.png',
+    'Los Angeles Clippers': 'https://loodibee.com/wp-content/uploads/los-angeles-clippers-logo-symbol.png',
     'Charlotte Hornets': 'https://loodibee.com/wp-content/uploads/nba-charlotte-hornets-logo.png',
     'Atlanta Hawks': 'https://loodibee.com/wp-content/uploads/nba-atlanta-hawks-logo.png',
     'Dallas Mavericks': 'https://loodibee.com/wp-content/uploads/dallas-mavericks-logo-symbol.png',

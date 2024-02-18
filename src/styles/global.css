@@ -130,7 +130,7 @@ html {
 }
 
 .modal-border {
-  border: 2px solid rgb(49, 139, 191);
+  border: 2px solid #318bbf;
   border-radius: 10px;
 }
 
@@ -217,4 +217,13 @@ input::placeholder {
 
 .disclaimer {
   color: red;
+}
+
+.standings-logo {
+  width: auto;
+  height: 30px
+}
+
+.standings-table {
+  border: 2px solid rgb(49, 139, 191);
 }

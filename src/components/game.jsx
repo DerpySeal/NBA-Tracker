@@ -230,7 +230,6 @@ export const Game = (props) => {
                   {homeStats &&
                     homeStats.map((player, index) => (
                       <tr key={index}>
-                        {console.log(player)}
                         <th scope="row" className="text-start ps-5">{player.name}</th>
                         <td>{player.pts}</td>
                         <td>{player.fg}</td>
@@ -269,7 +268,6 @@ export const Game = (props) => {
                   {awayStats &&
                     awayStats.map((player, index) => (
                       <tr key={index}>
-                        {console.log(player)}
                         <th scope="row" className="text-start ps-5">{player.name}</th>
                         <td>{player.pts}</td>
                         <td>{player.fg}</td>
