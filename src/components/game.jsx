@@ -12,6 +12,7 @@ export const Game = (props) => {
   const [awayPlayer, setAwayPlayer] = useState(null);
   const [homeStats, setHomeStats] = useState(null);
   const [awayStats, setAwayStats] = useState(null);
+  const [isModalLoading, setIsModalLoading] = useState(true);
 
   var temp;
   var temp2;
@@ -87,8 +88,6 @@ export const Game = (props) => {
   };
 
   const handleModalStats = async () => {
-    console.log(gameID);
-
     try {
       const [homeExpandedStats, awayExpandedStats] = await Promise.all([
         expandStats(gameID, "home"),
@@ -97,9 +96,10 @@ export const Game = (props) => {
 
       setHomeStats(homeExpandedStats);
       setAwayStats(awayExpandedStats);
-      console.log(homeExpandedStats);
     } catch (error) {
       console.error("Error fetching stats:", error);
+    } finally {
+      setIsModalLoading(false);
     }
   };
 
@@ -197,7 +197,7 @@ export const Game = (props) => {
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Full Game Stats
+                {isModalLoading ? "Loading..." : "Full Game Stats"}
               </h1>
               <button
                 type="button"

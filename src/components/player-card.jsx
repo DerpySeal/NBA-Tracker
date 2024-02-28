@@ -27,7 +27,7 @@ export const PlayerCard = (props) => {
       }
     });
   } catch (error) {
-    console.log("Logo / Color error");
+    console.log("Ignore this error");
   }
 
   return (

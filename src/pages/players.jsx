@@ -9,6 +9,8 @@ export const Players = () => {
   const [playerData, setPlayerData] = useState(null);
   const [playerInfo, setPlayerInfo] = useState(null);
   const [displayInfo, setDisplayInfo] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasSearched, setHasSearch] = useState(false)
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
@@ -16,12 +18,16 @@ export const Players = () => {
 
   const handleEnterPress = async (e) => {
     if (e.key === "Enter") {
+      setHasSearch(true);
+      setIsLoading(true);
+
       const playerInformation = await getPlayerInfo(inputText);
       if (playerInformation != null) {
         setPlayerInfo(playerInformation);
         setDisplayInfo(true);
       } else {
         setDisplayInfo(false);
+        setIsLoading(false);
         setInputText("");
         return false;
       }
@@ -31,9 +37,12 @@ export const Players = () => {
         setDisplayInfo(true);
       } else {
         setDisplayInfo(false);
+        setIsLoading(false);
         setInputText("");
         return false;
       }
+
+      setIsLoading(false);
       setInputText("");
     }
   };
@@ -53,7 +62,7 @@ export const Players = () => {
         />
       </div>
       <div className="mt-5">
-        {displayInfo ? (
+        {!hasSearched ? (<h1></h1>) : isLoading && hasSearched ? (<h1>Loading...</h1>) : displayInfo && !isLoading ? (
           <PlayerCard playerData={playerData} playerInfo={playerInfo} />
         ) : (
           <h1>Player Not Found. Check Spelling.</h1>

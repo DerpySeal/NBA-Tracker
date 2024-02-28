@@ -11,7 +11,6 @@ export const DatePickerInput = (props) => {
   const handleButtonClick = () => {
     // Perform some action with the text (replace this with your logic)
     const daysDiff = calculateDaysDifference(inputText);
-    console.log(inputText);
     setNumericalValue(daysDiff);
     setInputText("");
   };
