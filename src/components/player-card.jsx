@@ -30,8 +30,6 @@ export const PlayerCard = (props) => {
     console.log("Logo / Color error");
   }
 
-  console.log(teamLogo);
-
   return (
     <div>
       {props.playerData && props.playerInfo ? (
@@ -62,16 +60,16 @@ export const PlayerCard = (props) => {
               <div className="row pb-3">
                 <div className="col">
                   <h1>Height</h1>
-                  {props.playerInfo.height_feet ? (
-                    <h2>{`${props.playerInfo.height_feet}'${props.playerInfo.height_inches}"`}</h2>
+                  {props.playerInfo.height ? (
+                    <h2>{`${props.playerInfo.height}`}</h2>
                   ) : (
                     <h2>{`N/A`}</h2>
                   )}
                 </div>
                 <div className="col">
                   <h1>Weight</h1>
-                  {props.playerInfo.weight_pounds ? (
-                    <h2>{`${props.playerInfo.weight_pounds} lbs.`}</h2>
+                  {props.playerInfo.weight ? (
+                    <h2>{`${props.playerInfo.weight} lbs.`}</h2>
                   ) : (
                     <h2>{`N/A`}</h2>
                   )}
@@ -84,21 +82,21 @@ export const PlayerCard = (props) => {
                   className="col-sm-3 p-5 stat-square justify-content-center"
                   style={{ background: firstColor }}
                 >
-                  <h1>{props.playerData.pts}</h1>
+                  <h1>{(props.playerData.pts).toFixed(2)}</h1>
                   <h2>PTS</h2>
                 </div>
                 <div
                   className="col-sm-3 p-5 stat-square"
                   style={{ background: secondColor }}
                 >
-                  <h1>{props.playerData.reb}</h1>
+                  <h1>{(props.playerData.reb).toFixed(2)}</h1>
                   <h2>REB</h2>
                 </div>
                 <div
                   className="col-sm-3 p-5 stat-square"
                   style={{ background: thirdColor }}
                 >
-                  <h1>{props.playerData.ast}</h1>
+                  <h1>{(props.playerData.ast).toFixed(2)}</h1>
                   <h2>AST</h2>
                 </div>
               </div>

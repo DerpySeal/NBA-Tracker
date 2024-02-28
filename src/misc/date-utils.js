@@ -1,4 +1,4 @@
-//Function to format game status time
+//Function to format date in the format 'Month DD, YYYY'
 export const getFormattedDate = (num) => {
   const today = new Date();
   const adjustedDate = new Date(today);
@@ -21,7 +21,28 @@ export const getFormattedDate = (num) => {
   return `${monthName} ${day}, ${year}`;
 };
 
+//Function to format game date for api requests (specifically balldontlie) in the format 'YYYY-MM-DD'
+export const getFormattedApiDate = (num) => {
+  const today = new Date();
+  const adjustedDate = new Date(today);
 
+  // Num changes how many days to go backward / forward
+  adjustedDate.setDate(today.getDate() - num);
+
+  const year = adjustedDate.getFullYear();
+  const monthIndex = adjustedDate.getMonth() + 1; // Adding 1 to convert from 0-based index to 1-based index
+  const day = adjustedDate.getDate();
+
+  // Ensure single digits are padded with leading zeros
+  const formattedMonth = monthIndex < 10 ? `0${monthIndex}` : `${monthIndex}`;
+  const formattedDay = day < 10 ? `0${day}` : `${day}`;
+
+  // Return date in 'YYYY-MM-DD' format
+  return `${year}-${formattedMonth}-${formattedDay}`;
+};
+
+
+//Converts isoStrings into readable EST time strings
 export const convertToEST = (isoString) => {
   const utcDate = new Date(isoString);
   
@@ -50,6 +71,7 @@ export const convertDateFormatSlash = (inputDate) => {
   return outputDate;
 };
 
+//I actually dont remember why this is here, most likely not necessary
 export const convertDateFormat = (inputDate) => {
   // Split the input string into an array of year, month, and day
   const [year, month, day] = inputDate.split('-');
@@ -74,7 +96,7 @@ export const convertDateFormat = (inputDate) => {
 };
 
 
-//Function to find difference in dates
+//Function to find how many days a date has been since today
 export const calculateDaysDifference = (inputDate) => {
   // Replace "/" with "-" in the input date string
   const normalizedDate = inputDate.replace(/\//g, '-');

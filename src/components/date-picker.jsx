@@ -18,9 +18,9 @@ export const DatePickerInput = (props) => {
 
   return (
     <div className="container date-container py-4 my-3">
-      {props.day != "0000-00-00" ? (
+      {props.day != "0000-00-00" && props.day != "loading" ? (
         <h1 className="mb-4">{`${convertDateFormat(props.day)}`}</h1>
-      ) : (
+      ) : props.day === "loading" ? <h1> </h1> : (
         <h1 className="mb-4">No games found</h1>
       )}
 

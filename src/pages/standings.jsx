@@ -5,6 +5,7 @@ import { LOGOS } from "../misc/logos";
 export const Standings = () => {
   const [westArr, setWestArr] = useState();
   const [eastArr, setEastArr] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_FOOTBALL_API_KEY;
@@ -12,6 +13,7 @@ export const Standings = () => {
       "x-apisports-key": apiKey,
     };
 
+    //Fetches standings data and sets westArr and eastArr variables 
     const fetchData = async () => {
       try {
         const westData = [];
@@ -31,6 +33,8 @@ export const Standings = () => {
         setEastArr(eastData);
       } catch (error) {
         console.error("Error During Standings Request", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -48,7 +52,7 @@ export const Standings = () => {
             <div className="col-sm-6">
               <h1 className="mt-3 mb-4">West</h1>
               <table
-                class="table table-striped standings-table"
+                className="table table-striped standings-table"
                 data-bs-theme="dark"
               >
                 <thead>
@@ -84,7 +88,7 @@ export const Standings = () => {
             <div className="col-sm-6">
               <h1 className="mt-3 mb-4">East</h1>
               <table
-                class="table table-striped standings-table"
+                className="table table-striped standings-table"
                 data-bs-theme="dark"
               >
                 <thead>
@@ -119,7 +123,7 @@ export const Standings = () => {
             </div>
           </div>
         </div>
-      ) : (
+      ) : isLoading ? <h2>Loading...</h2> : (
         <h2>Standings Not Available</h2>
       )}
     </div>
